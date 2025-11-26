@@ -1,0 +1,709 @@
+/* --- 1. CSS Reset dan Variabel Global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Model kotak yang lebih mudah diatur */
+}
+
+:root {
+    /* Variabel Warna */
+    --color-primary: #3498db; /* Biru cerah sebagai warna utama */
+    --color-secondary: #2c3e50; /* Biru gelap untuk latar belakang/teks kuat */
+    --color-text: #333; /* Warna teks umum */
+    --color-bg-light: #f4f4f9; /* Latar belakang terang */
+    --color-white: #ffffff;
+    --color-accent: #e74c3c; /* Warna aksen/peringatan */
+
+    /* Variabel Font */
+    --font-heading: 'Arial', sans-serif;
+    --font-body: 'Helvetica', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg-light);
+    scroll-behavior: smooth; /* Scroll yang halus saat klik tautan */
+}
+
+/* --- 2. Styling Umum --- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-secondary);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Penataan Section Umum */
+section {
+    padding: 80px 5%; /* Padding atas/bawah 80px, kiri/kanan 5% */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- 3. HEADER dan Navigasi --- */
+#header {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+#navbar a {
+    margin-left: 25px;
+    font-weight: 500;
+    color: var(--color-text);
+    padding: 5px 0;
+}
+
+#navbar a.active,
+#navbar a:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary); /* Indikator tautan aktif/hover */
+}
+
+.menu-toggle {
+    display: none; /* Sembunyikan tombol menu di desktop */
+}
+
+/* --- 4. Tombol (CTA) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px 10px 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: #2980b9; /* Sedikit lebih gelap saat hover */
+    transform: translateY(-2px);
+    color: var(--color-white);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- 5. Hero Section Styling --- */
+.hero {
+    min-height: 80vh; /* Memastikan Hero memenuhi sebagian besar layar */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content .greeting {
+    font-size: 1.2em;
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin: 5px 0 15px 0;
+}
+
+.hero-content .role {
+    font-size: 1.4em;
+    color: var(--color-text);
+    margin-bottom: 30px;
+}
+
+.hero-image img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 50%; /* Membuat gambar profil bulat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.social-links a {
+    font-size: 1.5em;
+    margin-right: 20px;
+    color: var(--color-secondary);
+}
+
+.social-links a:hover {
+    color: var(--color-primary);
+}
+
+/* --- 6. Media Queries untuk Responsif (Mobile/Tablet) --- */
+/* Aturan ini akan diterapkan ketika lebar layar kurang dari 768px */
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero {
+        flex-direction: column; /* Tumpuk konten di perangkat kecil */
+        text-align: center;
+        min-height: 70vh;
+    }
+
+    .hero-image {
+        order: -1; /* Pindahkan gambar ke atas */
+        margin-bottom: 30px;
+    }
+
+    .hero-image img {
+        max-width: 250px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content .role {
+        font-size: 1.2em;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%; /* Tombol CTA menjadi lebih lebar */
+        margin: 5px 0;
+    }
+
+    /* Navigasi */
+    #navbar {
+        display: none; /* Sembunyikan navbar utama */
+    }
+
+    .menu-toggle {
+        display: block; /* Tampilkan tombol menu */
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--color-secondary);
+    }
+
+    /* Lanjutan dari @media (max-width: 768px) */
+@media (max-width: 768px) {
+    /* ... (Aturan CSS sebelumnya) ... */
+
+    /* Styling saat Menu Aktif */
+    #navbar.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed; /* Overlay di atas konten */
+        top: 60px; /* Di bawah header */
+        right: 0;
+        width: 70%; /* Lebar menu overlay */
+        height: calc(100vh - 60px); /* Sisa tinggi layar */
+        background-color: var(--color-secondary); /* Latar belakang gelap */
+        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        align-items: flex-start;
+        z-index: 999;
+    }
+    
+    #navbar.active a {
+        color: var(--color-white); /* Teks putih di latar belakang gelap */
+        margin: 15px 0;
+        font-size: 1.2em;
+        width: 100%;
+        border-bottom: none; /* Hapus border desktop */
+    }
+
+    #navbar.active a:hover {
+        color: var(--color-primary);
+    }
+    
+    /* Mencegah Scrolling saat Menu Terbuka */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+}
+/* --- 6. Styling Section Konten Lain (Skills) --- */
+
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--color-text);
+    margin-bottom: 50px;
+}
+
+.skills-grid {
+    display: grid;
+    /* Membuat layout grid: 3 kolom di desktop, lebar minimum 250px per kolom */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; /* Jarak antar card */
+    margin-top: 40px;
+}
+
+.skill-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--color-primary); /* Garis warna sebagai aksen */
+}
+
+.skill-card:hover {
+    transform: translateY(-5px); /* Efek angkat saat hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+    font-size: 3.5em;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.skill-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    color: var(--color-secondary);
+}
+
+.skill-card p {
+    color: #666;
+}
+
+/* Penyesuaian Responsif untuk Skills (khusus mobile) */
+@media (max-width: 600px) {
+    .skills-grid {
+        /* Di layar sangat kecil, grid akan otomatis menjadi 1 kolom penuh */
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2em;
+    }
+}
+
+/* --- 7. Styling Section Tentang Saya (About) --- */
+
+#about {
+    background-color: var(--color-white); /* Latar belakang putih untuk kontras */
+}
+
+.about-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start; /* Sejajarkan konten ke atas */
+}
+
+.about-image {
+    flex: 0 0 350px; /* Lebar tetap 350px untuk gambar di desktop */
+    margin-top: 20px;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Sudut membulat untuk kesan modern */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    flex: 1; /* Konten mengambil sisa ruang */
+}
+
+.about-content h3 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+}
+
+.about-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.highlight-points {
+    display: flex; /* Menggunakan flexbox untuk 2 kolom poin */
+    gap: 30px;
+    margin: 25px 0;
+}
+
+.highlight-points ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-points li {
+    margin-bottom: 10px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.highlight-points i {
+    color: #27ae60; /* Warna hijau untuk checkmark */
+    margin-right: 8px;
+}
+
+/* Penyesuaian Responsif untuk About */
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column; /* Tumpuk vertikal di layar yang lebih kecil */
+        text-align: center;
+    }
+
+    .about-image {
+        order: -1; /* Gambar dipindahkan ke atas */
+        flex: 1;
+        max-width: 80%;
+        margin: 0 auto 30px auto;
+    }
+    
+    .highlight-points {
+        justify-content: center;
+        flex-direction: column; /* Tumpuk poin secara vertikal jika terlalu sempit */
+    }
+}
+
+@media (max-width: 600px) {
+    .highlight-points {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+/* --- 8. Styling Section Kontak (Contact) --- */
+
+#contact {
+    background-color: var(--color-bg-light); 
+}
+
+.contact-container {
+    display: flex;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1; /* Kedua kolom mengambil ruang yang sama */
+}
+
+.contact-info h3,
+.contact-form h3 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--color-secondary);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.info-item i {
+    font-size: 1.5em;
+    color: var(--color-primary);
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+.info-item p {
+    margin: 0;
+}
+
+.social-links-contact a {
+    font-size: 1.8em;
+    margin-right: 20px;
+    color: var(--color-secondary);
+    transition: color 0.3s;
+}
+
+.social-links-contact a:hover {
+    color: var(--color-primary);
+}
+
+/* Styling Formulir */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none; /* Hilangkan garis biru default browser */
+}
+
+.form-group textarea {
+    resize: vertical; /* Hanya izinkan pengguna mengubah tinggi textarea */
+}
+
+/* Penyesuaian Responsif untuk Kontak */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column; /* Tumpuk vertikal di layar yang lebih kecil */
+    }
+}
+
+/* --- 9. Styling Section Portofolio (Portfolio) --- */
+
+#portfolio {
+    background-color: var(--color-white); 
+}
+
+.portfolio-grid {
+    display: grid;
+    /* Membuat layout grid yang responsif, 3 kolom di desktop */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 35px; /* Jarak antar card */
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Penting agar gambar tidak keluar dari radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px); /* Efek angkat yang lebih dramatis */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px; /* Tinggi tetap untuk gambar */
+    object-fit: cover; /* Memastikan gambar menutupi area tanpa terdistorsi */
+    transition: opacity 0.3s;
+}
+
+.project-card:hover img {
+    opacity: 0.9;
+}
+
+.project-info {
+    padding: 20px 25px 25px;
+}
+
+.project-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: var(--color-secondary);
+}
+
+.project-desc {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+/* Styling Tags Teknologi */
+.project-tags span {
+    display: inline-block;
+    background-color: var(--color-bg-light); 
+    color: var(--color-primary);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 10px;
+}
+
+/* Styling Tombol Kecil */
+.btn-small {
+    padding: 8px 18px;
+    font-size: 0.9em;
+}
+
+/* Penyesuaian Responsif untuk Portofolio */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        /* Di layar tablet/mobile, minimal lebar kolom bisa dikurangi */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* --- 10. Styling Footer --- */
+
+footer {
+    background-color: var(--color-secondary); /* Warna gelap yang profesional */
+    color: var(--color-bg-light); /* Teks terang */
+    padding: 40px 5%; /* Padding sama dengan section lainnya */
+    font-size: 0.9em;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap; /* Penting untuk responsivitas */
+}
+
+.footer-col {
+    flex: 1; /* Setiap kolom mengambil ruang yang sama */
+    min-width: 200px; /* Lebar minimum agar tidak terlalu sempit di tablet */
+}
+
+.footer-col p {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.footer-credit {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #999; /* Warna abu-abu halus untuk kredit */
+    margin-top: 5px;
+}
+
+/* Footer Social Links */
+.footer-social .social-links a {
+    color: var(--color-bg-light); 
+    font-size: 1.3em;
+    margin-right: 15px;
+}
+
+.footer-social .social-links a:hover {
+    color: var(--color-primary); /* Warna hover sesuai tema */
+}
+
+/* Footer Navigation List */
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-navigation li a {
+    color: var(--color-bg-light);
+    display: block;
+    padding: 5px 0;
+}
+
+.footer-navigation li a:hover {
+    color: var(--color-primary);
+}
+
+/* Responsif Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-col {
+        margin-bottom: 20px;
+    }
+}
+
+/* --- 11. Styling Tombol Back to Top --- */
+
+#backToTopBtn {
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di tempat meskipun di-scroll */
+    bottom: 30px; 
+    right: 30px;
+    z-index: 99; /* Pastikan berada di atas elemen lain */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%; /* Bulat */
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, opacity 0.3s;
+    opacity: 0.8;
+}
+
+#backToTopBtn:hover {
+    background-color: var(--color-secondary);
+    opacity: 1;
+}
+
+/* Kelas untuk Menampilkan Tombol (Ditambah oleh JS) */
+#backToTopBtn.show {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    #backToTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
